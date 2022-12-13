@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { useReducer } from 'react';
+
+const reducer = (state, action) => {
+  if (action.type === 'INCREMENT') {
+    return state + 1;
+  }
+  if (action.type === 'DECREMENT') {
+    return state - 1;
+  }
+  return state;
+}
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, 0)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Rupan</p>
+      <p>{state}</p>
+      <div className='btnStylePosition'>
+        <button onClick={() => dispatch({ type: 'INCREMENT' })}> INC </button>
+        <button onClick={() => dispatch({ type: 'DECREMENT' })}>DEC</button>
+      </div>
     </div>
   );
 }
